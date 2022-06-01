@@ -1,0 +1,15 @@
+---
+- name: set Earth Rotate index.html
+  hosts: all
+  remote_user: ansible
+  become: true
+  become_method: sudo
+  become_user: root
+
+  tasks:
+  - name: set index.html
+    copy: src=/ansible_templates/earthrotate.html dest=/var/www/html/index.html owner=root group=root mode=0444
+  - name: set dosug.jpeg
+    copy: src=/ansible_templates/earthrotate.gif dest=/var/www/html/earthrotate.gif owner=root group=root mode=0444
+  - name: restart httpd
+    service: name=httpd state=restarted

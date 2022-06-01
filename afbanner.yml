@@ -1,0 +1,15 @@
+---
+- name: set apache AF banner
+  hosts: all
+  remote_user: ansible
+  become: true
+  become_method: sudo
+  become_user: root
+
+  tasks:
+  - name: set index.html
+    copy: src=/ansible_templates/afbanner.html dest=/var/www/html/index.html owner=root group=root mode=0444
+  - name: set dod_consent.png
+    copy: src=/ansible_templates/dod_consent.png dest=/var/www/html/dod_consent.png owner=root group=root mode=0444
+  - name: restart httpd
+    service: name=httpd state=restarted

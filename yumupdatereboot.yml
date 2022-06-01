@@ -1,0 +1,13 @@
+---
+- name: yum update all packages with reboot
+  hosts: all
+  remote_user: ansible
+  become: true
+  become_method: sudo
+  become_user: root
+
+  tasks:
+  - name: update all packages
+    yum: pkg='*' state=latest
+  - name: reboot system
+    reboot: 

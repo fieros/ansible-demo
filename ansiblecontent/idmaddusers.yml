@@ -1,0 +1,44 @@
+---
+- name: Add IdM Users
+  hosts: all
+  remote_user: ansible
+  become: true
+  become_method: sudo
+  become_user: root
+  vars:
+    initial_user_pass: MySecret123
+
+  tasks:
+  - name: Create user idm_users
+    ipauser:
+      users:
+      - name: Add Joe User
+        first: Joe
+        last: User
+        uid: 10001
+        gid: 10011
+        phone: "+7192315487"
+        email: joe@example.com
+        passwordexpiration: "2023-01-19 23:59:59"
+        password: {{ initial_user_pass }}
+        update_password: on_create
+     - name: Add Chuck Helpme
+        first: Chuck
+        last: Helpme
+        uid: 10002
+        gid: 10012
+        phone: "+7192315489"
+        email: joe@example.com
+        passwordexpiration: "2023-01-19 23:59:59"
+        password: {{ initial_user_pass }}
+        update_password: on_create
+      - name: Add Danny Dev
+        first: Danny
+        last: Dev
+        uid: 10003
+        gid: 10013
+        phone: "+7192315497"
+        email: joe@example.com
+        passwordexpiration: "2023-01-19 23:59:59"
+        password: {{ initial_user_pass }}
+        update_password: on_create

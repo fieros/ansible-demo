@@ -1,0 +1,11 @@
+---
+- name: Local reposync
+  hosts: all
+  remote_user: ansible
+  become: true
+  become_method: sudo
+  become_user: root
+
+  tasks:
+  - name: reposync
+    command: reposync --gpgcheck -l --repoid=rhel-7-server-rpms --download_path=/var/www/html --downloadcomps --download-metadata

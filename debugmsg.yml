@@ -1,0 +1,11 @@
+---
+- name: debug message
+  hosts: all
+  remote_user: ansible
+  become: true
+  become_method: sudo
+  become_user: root
+
+  tasks:
+  - name: debug error message
+    debug: msg="Whoops. Something went wrong..."

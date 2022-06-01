@@ -1,0 +1,26 @@
+---
+- name: reset demo
+  hosts: all
+  remote_user: ansible
+  become: true
+  become_method: sudo
+  become_user: root
+
+  tasks:
+  - name: delete index.html
+    file: path=/var/www/html/index.html state=absent
+  - name: delete JPGs
+    file: path=/var/www/html/*.jpg state=absent
+  - name: delete JPEGs
+    file: path=/var/www/html/*.jpeg state=absent
+  - name: delete PNGs
+    file: path=/var/www/html/*.png state=absent
+  - name: delete GIFs
+    file: path=/var/www/html/*.gif state=absent
+  - name: remove httpd
+    yum: pkg=httpd state=absent
+  - name: disable https
+    firewalld: service=https permanent=true state=disabled immediate=yes
+  - name: disable http
+    firewalld: service=http permanent=true state=disabled immediate=yes
+
