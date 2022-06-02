@@ -7,8 +7,8 @@
 
   tasks:
   - name: set index.html
-    copy: src=/ansible_templates/egs.html dest=/var/www/html/index.html owner=root group=root mode=0444
+    copy: src=ansible_templates/egs.html dest=/var/www/html/index.html owner=root group=root mode=0444
   - name: set image
-    copy: src=/ansible_templates/egs.jpg dest=/var/www/html/egs.jpg owner=root group=root mode=0444
+    copy: src=ansible_templates/egs.jpg dest=/var/www/html/egs.jpg owner=root group=root mode=0444
   - name: restart httpd
     service: name=httpd state=restarted
